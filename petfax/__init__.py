@@ -1,5 +1,6 @@
 #config
 from flask import Flask 
+from flask_migrate import Migrate
 
 #factory
 def create_app(): 
@@ -11,6 +12,7 @@ def create_app():
 
     from . import models
     models.db.init_app(app)
+    migrate = Migrate(app, models.db)
 
     # index route
     @app.route('/')
